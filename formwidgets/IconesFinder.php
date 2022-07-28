@@ -134,7 +134,11 @@ class IconesFinder extends FormWidgetBase
     public function getLoadValue()
     {
         if ($this->formField->value != null) {
-            $icon = Helpers::mapIcon($this->formField->value);
+            if (is_numeric($this->formField->value)){
+                $icon = Icon::find($this->formField->value);
+            }else{
+                $icon = Helpers::mapIcon($this->formField->value);
+            }
 
             $icon->svg = $icon->toSVG([
                 'inline' => true,
