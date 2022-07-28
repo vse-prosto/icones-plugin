@@ -11,7 +11,11 @@ class JsonIcon
     {
         // $jsonIcon is the Serialized icon from DB
         if ($jsonIcon != null) {
-            $this->icon = Helpers::mapIcon($jsonIcon);
+            if (is_numeric($jsonIcon)){
+                $this->icon = Icon::find($jsonIcon);
+            }else{
+                $this->icon = Helpers::mapIcon($jsonIcon);
+            }
         }
     }
 
